@@ -151,3 +151,51 @@ g(X,Y) :-
     parent(Y,Q).
 
     parent(Q,Z).
+
+    # zadanie2
+
+    rodzic(marek, anna).
+rodzic(marek, jan).
+rodzic(ewa, anna).
+rodzic(ewa, jan).
+
+mężczyzna(marek).
+mężczyzna(jan).
+
+osoba(anna).
+osoba(jan).
+osoba(marek).
+osoba(ewa).
+
+kobieta(X) :-
+    \+ mężczyzna(X).
+
+/*x jest ojcem y*/
+ojciec(X,Y) :-
+    mężczyzna(X),
+    rodzic(X,Y).
+
+matka(X,Y) :-
+    kobieta(X),
+    rodzic(X,Y).
+
+corka(X,Y) :-
+    kobieta(X),
+    matka(X,Y);
+    ojciec(X,Y).
+
+brat_rodzony(X,Y) :-
+    mężczyzna(X),
+    ojciec(A,X),
+    ojciec(A,Y),
+    matka(B,X),
+    matka(B,Y),
+    X \= Y.
+
+
+
+
+
+
+
+
