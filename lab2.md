@@ -152,45 +152,129 @@ g(X,Y) :-
 
     parent(Q,Z).
 
-    # zadanie2
+# zadanie2
 
-    rodzic(marek, anna).
+rodzic(marek, anna).
+
 rodzic(marek, jan).
+
 rodzic(ewa, anna).
+
 rodzic(ewa, jan).
 
+rodzic(ewa, antek).
+
+rodzic(marek, antek).
+
+rodzic(halina, ewa).
+
+rodzic(halina, jakub).
+
+rodzic(andrzej, ewa).
+
+rodzic(jakub, piotr).
+
+rodzic(zygmunt, marek).
+
+rodzic(stanislaw, zygmunt).
+
+
 mężczyzna(marek).
+
 mężczyzna(jan).
 
+mężczyzna(antek).
+
+mężczyzna(zygmunt).
+
+mężczyzna(jakub).
+
+mężczyzna(piotr).
+
+mężczyzna(andrzej).
+
+mężczyzna(stanislaw).
+
+
 osoba(anna).
+
 osoba(jan).
+
 osoba(marek).
+
 osoba(ewa).
 
+osoba(zygmunt).
+
+osoba(jakub).
+
+osoba(piotr).
+
+osoba(andrzej).
+
+osoba(halina).
+
+
 kobieta(X) :-
+
     \+ mężczyzna(X).
 
+
 /*x jest ojcem y*/
-ojciec(X,Y) :-
+
+ojciec(X, Y) :-
+
     mężczyzna(X),
-    rodzic(X,Y).
+    
+    rodzic(X, Y).
 
-matka(X,Y) :-
+matka(X, Y) :-
+
     kobieta(X),
-    rodzic(X,Y).
+    
+    rodzic(X, Y).
 
-corka(X,Y) :-
+corka(X, Y) :-
+
     kobieta(X),
-    matka(X,Y);
-    ojciec(X,Y).
+    
+    matka(X, Y);
+    
+    ojciec(X, Y).
 
-brat_rodzony(X,Y) :-
+brat_rodzony(X, Y) :-
+
     mężczyzna(X),
-    ojciec(A,X),
-    ojciec(A,Y),
-    matka(B,X),
-    matka(B,Y),
+    
+    ((ojciec(A, X), ojciec(A, Y));
+    
+    (matka(B, X), matka(B, Y))),
+    
     X \= Y.
+
+brat_przyrodni(X, Y) :-
+
+    mężczyzna(X),
+    
+    rodzic(A, Y),
+    
+    rodzic(B, Y),
+    
+    (\+ rodzic(A, X);
+    
+    \+ rodzic(B, X)).
+    
+kuzyn(X, Y) :-
+
+    rodzic(A, X),
+    
+    rodzic(B, A),
+    
+    rodzic(B, C),
+    
+    rodzic(C, Y),
+    
+
 
 
 
