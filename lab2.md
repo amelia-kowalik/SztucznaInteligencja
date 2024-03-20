@@ -39,38 +39,115 @@ love(X,Y) :-
 
 # zadanie1
 parent(syn,ojciec).
+
 parent(syn,matka).
+
 parent(corka,ojciec).
+
 parent(corka,matka).
+
 parent(matka,dziadek).
+
 parent(matka,babcia).
+
 parent(ojciec,dziadek2).
+
 parent(ojciec,babcia2).
+
 parent(ciotka,dziadek).
+
 parent(ciotka,babcia).
+
 parent(ciotka,dziadek2).
+
 parent(ciotka,babcia2).
+
 parent(kuzyn,ciotka).
+
 parent(corka_p,ojciec).
-/*x jest dzieckiem y*/
+
+parent(syn_p,matka).
+
+
+/* x jest dzieckiem y */
+
 
 siblings(X,Y) :-
-    parent(X,Z),
+
+    parent(X,Z).
+
     parent(Y,Z).
 
+
 cousins(X,Y) :-
-    parent(X,Z),
-    parent(Z,Q),
-    parent(Y,W),
+
+    parent(X,Z).
+
+    parent(Z,Q).
+
+    parent(Y,W).
+
     parent(W,Q).
 
+
 common_grandchild(X,Y) :-
-    parent(Z,X),
-    parent(Q,Y),
-    parent(W,Q),
+
+    parent(Z,X).
+
+    parent(Q,Y).
+
+    parent(W,Q).
+
     parent(W,Z).
-    
+
+
 foster_child(X,Y) :-
-    parent(X,Q),
-    parent(Z,Q),
+
+    parent(X,Q).
+
+    parent(Z,Q).
+
     parent(Z,Y).
+
+    \+ parent(X,Y).
+
+    X \= Y.
+
+
+step_siblings(X,Y) :-
+
+    parent(X,Q).
+
+    parent(X,Z).
+
+    parent(Y,Z).
+
+    parent(Y,W).
+
+    \+ parent(X,Y).
+
+    X \= Y.
+
+
+sibling_in_law(X,Y) :-
+
+    parent(Z,X).
+
+    parent(Z,Q).
+
+    parent(Q,W).
+
+    parent(Y,W).
+
+
+g(X,Y) :- 
+
+    parent(X,Z).
+
+    parent(X,W).
+
+    parent(Y,W).
+
+    parent(Y,Q).
+
+    parent(Q,Z).
