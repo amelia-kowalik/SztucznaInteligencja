@@ -308,15 +308,21 @@ przodek_do2pokolenia_wstecz(X, Y) :-
 
     dziadek(X, Y);
     
-    babcia(X, Y).
+    babcia(X, Y);
+    
+    rodzic(X,Y).
 
 przodek_do3pokolenia_wstecz(X, Y) :-
 
-    (dziadek(X, A);
+    rodzic(X,Y);
+
+    dziadek(X, Y);
     
-    babcia(X, A)),
+    babcia(X, Y);
     
-    rodzic(A, Y).
+    (dziadek(Z, Y), rodzic(X, Z));
+    
+    (babcia(Z, Y), rodzic(X, Z)).
 
 
 
