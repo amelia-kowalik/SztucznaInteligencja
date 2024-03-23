@@ -274,7 +274,49 @@ kuzyn(X, Y) :-
     
     rodzic(C, Y),
     
+dziadek_od_strony_ojca(X, Y) :-
 
+    ojciec(X, A),
+    
+    ojciec(A, Y).
+
+dziadek_od_strony_matki(X, Y) :-
+
+    ojciec(X, A),
+    
+    matka(A, Y).
+
+dziadek(X, Y) :-
+
+    ojciec(X, A),
+    
+    rodzic(A, Y).
+
+babcia(X, Y) :-
+    matka(X, A),
+    rodzic(A, Y).
+
+wnuczka(X, Y) :-
+
+    kobieta(Y),
+    
+    rodzic(A, Y),
+    
+    rodzic(X, A).
+
+przodek_do2pokolenia_wstecz(X, Y) :-
+
+    dziadek(X, Y);
+    
+    babcia(X, Y).
+
+przodek_do3pokolenia_wstecz(X, Y) :-
+
+    (dziadek(X, A);
+    
+    babcia(X, A)),
+    
+    rodzic(A, Y).
 
 
 
